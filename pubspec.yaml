@@ -1,0 +1,33 @@
+name: troglo_test
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.1.4
+  google_fonts: ^2.1.0
+  multiple_result: ^1.0.3
+  dio: ^4.0.0
+  intl: ^0.17.0
+  firebase_core: ^1.3.0
+  firebase_auth: ^1.4.1
+  url_launcher: ^6.0.9
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/images/
+
+
+
