@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "974875647571",
+    "project_id": "troglo-back-test",
+    "storage_bucket": "troglo-back-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974875647571:android:e0b8396eeb1aa549a5f0a6",
+        "android_client_info": {
+          "package_name": "com.example.troglo_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974875647571-nom6otc8m96l4eque5tck7ggm4qrc2rh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6fKuEaQmVUpjHBiKjLvYKZZyyziTcnPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974875647571-nom6otc8m96l4eque5tck7ggm4qrc2rh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "974875647571-g0j0bpmah3334dsnrsn7stboojd5ooc9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.trogloTest"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

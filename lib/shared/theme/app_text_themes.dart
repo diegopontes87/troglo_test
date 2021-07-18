@@ -32,7 +32,7 @@ class AppTextTheme {
         color: AppColors.black,
       ),
       bodyText1: GoogleFonts.inter(
-        fontSize: 16.propHeight(),
+        fontSize: 18.propHeight(),
         fontWeight: FontWeight.w400,
         color: AppColors.black,
         height: 1.7,

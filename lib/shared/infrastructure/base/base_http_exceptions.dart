@@ -1,6 +1,6 @@
 import 'package:troglo_test/shared/res/app_http.dart';
-import 'package:troglo_test/shared/res/app_res.dart';
 import 'package:dio/dio.dart';
+import 'package:troglo_test/shared/res/app_strings.dart';
 
 class BaseHttpExceptions {
   String? error;
@@ -8,20 +8,25 @@ class BaseHttpExceptions {
   BaseHttpExceptions({this.error, this.errorMessage});
   static BaseHttpExceptions handleException(DioError? error) {
     switch (error?.response?.statusCode) {
+      case 400:
+        return NotFoundException(
+          error: 'Entity Error',
+          errorMessage: 'One or more parameters are empty!',
+        );
       case 404:
         return NotFoundException(
-          error: '404',
-          errorMessage: AppRes.appText.notFoundError,
+          error: AppStrings.notFoundError,
+          errorMessage: error?.response?.statusMessage ?? AppStrings.genericMessage,
         );
       default:
         if (error!.message.contains(AppHttp.networkErrorCode))
           return NetWorkException(
-            error: AppRes.appText.networkConnectionError,
-            errorMessage: AppRes.appText.networkConnectionMessage,
+            error: AppStrings.networkError,
+            errorMessage: AppStrings.networkMessage,
           );
         return GenericException(
-          error: '500',
-          errorMessage: AppRes.appText.genericErrorMessage,
+          error: AppStrings.genericError,
+          errorMessage: AppStrings.genericMessage,
         );
     }
   }

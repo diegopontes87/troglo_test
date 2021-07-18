@@ -1,8 +1,8 @@
+import 'package:troglo_test/shared/infrastructure/base/base_firebase_exception.dart';
 import 'package:troglo_test/shared/infrastructure/screen_state/screen_state.dart';
-import 'package:troglo_test/shared/res/app_routes.dart';
-import 'package:troglo_test/shared/res/app_strings.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:troglo_test/shared/utils/general_functions.dart';
 
 import 'base_http_exceptions.dart';
 
@@ -37,22 +37,30 @@ class BaseController extends GetxController {
     update();
   }
 
+  void exceptionHandler(BaseHttpExceptions exception, {String? backRouteName}) {
+    if (exception is NetWorkException) {
+      // Get.offAllNamed(
+      //   AppRoutes.errorPage,
+      //   arguments: {
+      //     AppStrings.error: exception.error,
+      //     AppStrings.errorMessage: exception.errorMessage,
+      //     AppStrings.backRoute: backRouteName,
+      //   },
+      // );
+    } else {
+      GeneralFunctions.getErrorSnackBar(
+        exception.error,
+        exception.errorMessage,
+      );
+    }
+  }
 
-  // void exceptionHandler(BaseHttpExceptions exception, {String? backRouteName}) {
-  //   if (exception is NetWorkException) {
-  //     Get.offAllNamed(
-  //       AppRoutes.errorPage,
-  //       arguments: {
-  //         AppStrings.error: exception.error,
-  //         AppStrings.errorMessage: exception.errorMessage,
-  //         AppStrings.backRoute: backRouteName,
-  //       },
-  //     );
-  //   } else {
-  //     GeneralFunctions.getErrorSnackBar(
-  //       exception.error,
-  //       exception.errorMessage,
-  //     );
-  //   }
-  // }
+  void firebaseExceptionHandler(BaseFirebaseException exception, {String? backRouteName}) {
+    {
+      GeneralFunctions.getErrorSnackBar(
+        exception.error,
+        exception.errorMessage,
+      );
+    }
+  }
 }

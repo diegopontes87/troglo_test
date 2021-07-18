@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppRes {
-
   //BLACK TEXTS THEMES
   static var _appTextTheme = Theme.of(Get.context!).textTheme;
   static TextStyle headline1 = _appTextTheme.headline1!;
