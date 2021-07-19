@@ -28,7 +28,7 @@ class OrderRemoteDataSource extends BaseRemoteDataSource {
     }
   }
 
-  Future<Result<BaseHttpExceptions, List<OrderEntity>?>> getTestsInfo() async {
+  Future<Result<BaseHttpExceptions, List<OrderEntity>?>> getUserOrders() async {
     try {
       var userId = _auth.currentUser?.uid;
       var result = await client.post('${AppHttp.orders}/$userId');
@@ -36,9 +36,9 @@ class OrderRemoteDataSource extends BaseRemoteDataSource {
           List<OrderEntity>.from(result.data.map((apiData) => OrderModel.fromJson(Map<String, dynamic>.from(apiData)).toEntity()).toList());
       return Success(ordersList);
     } on PlatformException catch (error, stacktrace) {
-      print('IO Exception Error while trying get user tests results: $error');
+      print('IO Exception Error while trying get user orders: $error');
       print('Error stacktrace: $stacktrace');
-      return Error(BaseHttpExceptions(error: 'Error', errorMessage: 'Could not get user tests results!'));
+      return Error(BaseHttpExceptions(error: 'Error', errorMessage: 'Could not get user orders!'));
     }
   }
 }
