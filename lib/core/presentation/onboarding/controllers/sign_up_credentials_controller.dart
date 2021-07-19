@@ -4,8 +4,8 @@ import 'package:troglo_test/core/data/user/entities/user_info_entity.dart';
 import 'package:troglo_test/core/domain/user/usecases/save_user_info_usecase.dart';
 import 'package:troglo_test/core/domain/user/usecases/sign_up_with_email_usecase.dart';
 import 'package:troglo_test/shared/infrastructure/base/base_controller.dart';
-import 'package:troglo_test/shared/infrastructure/screen_state/screen_state.dart';
 import 'package:get/utils.dart';
+import 'package:troglo_test/shared/infrastructure/screen_state/screen_state.dart';
 import 'package:troglo_test/shared/res/app_routes.dart';
 
 class SignUpCredentialsController extends BaseController {
@@ -24,46 +24,55 @@ class SignUpCredentialsController extends BaseController {
     this._saveUserInfoUsecase,
   );
 
-  String? emailFieldValidator(String? email, Function callbackError) {
+  String? emailFieldValidator(String? email) {
     if (email == null || email.isEmpty) {
-      callbackError('Missed Field:', "Email field can't be empty");
+      getErrorSnackBar('Missed Field:', "Email field can't be empty");
+      return '';
     } else if (!email.isEmail) {
-      callbackError('Error', 'Please insert a valid email');
-    } else {
+      getErrorSnackBar('Error', 'Please insert a valid email');
       return '';
+    } else {
+      return null;
     }
   }
 
-  String? confirmEmailFieldValidator(String? confirmEmail, Function callbackError) {
+  String? confirmEmailFieldValidator(String? confirmEmail) {
     if (confirmEmail == null || confirmEmail.isEmpty) {
-      callbackError('Missed Field:', "Confirm email field can't be empty");
-    } else if (confirmEmail != confirmEmail) {
-      callbackError('Different arguments:', "You must use the same e-mail address to continue");
-    } else {
+      getErrorSnackBar('Missed Field:', "Confirm email field can't be empty");
       return '';
+    } else if (emailTextFieldController.text != confirmEmail) {
+      getErrorSnackBar('Different arguments:', "You must use the same e-mail address to continue");
+      return '';
+    } else {
+      return null;
     }
   }
 
-  String? passwordFieldValidator(String? password, Function callbackError) {
+  String? passwordFieldValidator(String? password) {
     if (password == null || password.isEmpty) {
-      callbackError('Missed Field:', "Password field can't be empty");
-    } else {
+      getErrorSnackBar('Missed Field:', "Password field can't be empty");
       return '';
+    } else {
+      return null;
     }
   }
 
-  String? confirmPasswordFieldValidator(String? confirmPassword, Function callbackError) {
+  String? confirmPasswordFieldValidator(
+    String? confirmPassword,
+  ) {
     if (confirmPassword == null || confirmPassword.isEmpty) {
-      callbackError('Missed Field:', "Confirm password field can't be empty");
-    } else if (confirmPassword != confirmPassword) {
-      callbackError('Different arguments:', "You must confirm the same password to continue.");
-    } else {
+      getErrorSnackBar('Missed Field:', "Confirm password field can't be empty");
       return '';
+    } else if (passwordTextFieldController.text != confirmPassword) {
+      getErrorSnackBar('Different arguments:', "You must confirm the same password to continue.");
+      return '';
+    } else {
+      return null;
     }
   }
 
   Future fieldValidator() async {
-    if (!formKey.currentState!.validate()) {
+    if (formKey.currentState!.validate()) {
       changeScreenState(ScreenState.loadingState);
       await createUserWithEmail(userInfoEntity!);
       await saveUserInfo(userInfoEntity!);

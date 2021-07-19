@@ -25,7 +25,7 @@ Future startAppFunctions() async {
   var _auth = FirebaseAuth.instance;
   var user = _auth.currentUser;
   if (user != null) {
-    AppRoutes.initialRoute = AppRoutes.homePage;
+    AppRoutes.initialRoute = AppRoutes.loginPage;
   } else {
     AppRoutes.initialRoute = AppRoutes.loginPage;
   }

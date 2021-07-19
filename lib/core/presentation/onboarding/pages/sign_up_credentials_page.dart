@@ -87,10 +87,7 @@ class SignUpCredentialsPage extends GetWidget<SignUpCredentialsController> {
                                 screenState: controller.screenState,
                                 textInputAction: TextInputAction.next,
                                 textFieldController: controller.emailTextFieldController,
-                                validator: (value) => controller.emailFieldValidator(
-                                  value,
-                                  getErrorSnackBar,
-                                ),
+                                validator: (value) => controller.emailFieldValidator(value),
                               ),
                               AppTextFormField(
                                 margin: EdgeInsets.only(
@@ -105,10 +102,7 @@ class SignUpCredentialsPage extends GetWidget<SignUpCredentialsController> {
                                 screenState: controller.screenState,
                                 textInputAction: TextInputAction.next,
                                 textFieldController: controller.confirmEmailTextFieldController,
-                                validator: (value) => controller.confirmEmailFieldValidator(
-                                  value,
-                                  getErrorSnackBar,
-                                ),
+                                validator: (value) => controller.confirmEmailFieldValidator(value),
                               ),
                               AppTextFormField(
                                 margin: EdgeInsets.only(
@@ -124,10 +118,7 @@ class SignUpCredentialsPage extends GetWidget<SignUpCredentialsController> {
                                 textInputAction: TextInputAction.next,
                                 isPassword: true,
                                 textFieldController: controller.passwordTextFieldController,
-                                validator: (value) => controller.passwordFieldValidator(
-                                  value,
-                                  getErrorSnackBar,
-                                ),
+                                validator: (value) => controller.passwordFieldValidator(value),
                               ),
                               AppTextFormField(
                                 margin: EdgeInsets.only(
@@ -143,10 +134,7 @@ class SignUpCredentialsPage extends GetWidget<SignUpCredentialsController> {
                                 textInputAction: TextInputAction.next,
                                 isPassword: true,
                                 textFieldController: controller.confirmPasswordTextFieldController,
-                                validator: (value) => controller.confirmPasswordFieldValidator(
-                                  value,
-                                  getErrorSnackBar,
-                                ),
+                                validator: (value) => controller.confirmPasswordFieldValidator(value),
                               ),
                               Container(
                                 height: 158,
@@ -185,13 +173,6 @@ class SignUpCredentialsPage extends GetWidget<SignUpCredentialsController> {
               ),
             ),
           )),
-    );
-  }
-
-  getErrorSnackBar(String errorTitle, String errorMessage) {
-    AppSnackBar.getErrorSnackBar(
-      title: errorTitle,
-      message: errorMessage,
     );
   }
 }

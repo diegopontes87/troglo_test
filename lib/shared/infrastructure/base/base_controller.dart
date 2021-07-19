@@ -2,6 +2,7 @@ import 'package:troglo_test/shared/infrastructure/base/base_firebase_exception.d
 import 'package:troglo_test/shared/infrastructure/screen_state/screen_state.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:troglo_test/shared/infrastructure/widgets/app_snack_bar.dart';
 import 'package:troglo_test/shared/utils/general_functions.dart';
 
 import 'base_http_exceptions.dart';
@@ -53,6 +54,13 @@ class BaseController extends GetxController {
         exception.errorMessage,
       );
     }
+  }
+
+  getErrorSnackBar(String errorTitle, String errorMessage) {
+    AppSnackBar.getErrorSnackBar(
+      title: errorTitle,
+      message: errorMessage,
+    );
   }
 
   void firebaseExceptionHandler(BaseFirebaseException exception, {String? backRouteName}) {

@@ -11,7 +11,7 @@ import 'package:troglo_test/shared/infrastructure/base/base_http_exceptions.dart
 import 'package:troglo_test/shared/infrastructure/base/base_remote_datasource.dart';
 import 'package:troglo_test/shared/res/app_http.dart';
 
-class TestRemoteDataSource extends BaseRemoteDataSource {
+class TestsRemoteDataSource extends BaseRemoteDataSource {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<Result<BaseHttpExceptions, TestsResultEntity>> getUserTestsResults() async {
@@ -29,12 +29,12 @@ class TestRemoteDataSource extends BaseRemoteDataSource {
   Future<Result<BaseHttpExceptions, List<TestInfoEntity>>> getTestsInfo() async {
     try {
       var result = await client.post('${AppHttp.testsKit}');
-      List<TestInfoEntity> testsInfoList = List<TestInfoEntity>.from(result.data
+      List<TestInfoEntity> list = List<TestInfoEntity>.from(result.data
           .map(
             (apiData) => TestInfoModel.fromJson(Map<String, dynamic>.from(apiData)).toEntity(),
           )
           .toList());
-      return Success(testsInfoList);
+      return Success(list);
     } on PlatformException catch (error, stacktrace) {
       print('IO Exception Error while trying get user tests results: $error');
       print('Error stacktrace: $stacktrace');

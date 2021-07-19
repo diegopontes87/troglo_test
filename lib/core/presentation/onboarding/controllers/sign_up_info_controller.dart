@@ -90,14 +90,15 @@ class SignUpInfoController extends BaseController {
   bool genderFieldValidator(Function callbackError) {
     if (selectedGender == 'Gender') {
       callbackError('Missed Field:', "Please choose a gender.");
+      return false;
     }
-
     return true;
   }
 
   bool genitaliaFieldValidator(Function callbackError) {
     if (selectedGenitalia == 'Genitalia') {
       callbackError('Missed Field:', "Please choose a genitalia type.");
+      return false;
     }
     return true;
   }

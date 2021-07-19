@@ -52,7 +52,7 @@ class AppTextFormField extends StatelessWidget {
         obscureText: isPassword,
         controller: textFieldController,
         inputFormatters: inputFormatters,
-        validator: validator,
+        validator: (value) => validator!(value),
         enabled: screenState != ScreenState.loadingState,
         style: style,
         onChanged: (value) {
