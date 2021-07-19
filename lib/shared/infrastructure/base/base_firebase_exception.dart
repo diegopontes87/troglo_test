@@ -14,14 +14,15 @@ class AppFirebaseEmailAuthException extends BaseFirebaseException {
   String? errorMessage;
   AppFirebaseEmailAuthException({this.errorMessage});
 
-  static const _errorlInvalidEmail = 'ERROR_INVALID_EMAIL';
-  static const _errorWrongPassword = 'ERROR_WRONG_PASSWORD';
-  static const _errorUserNotFound = 'ERROR_USER_NOT_FOUND';
-  static const _errorUserDisabled = 'ERROR_USER_DISABLED';
-  static const _errorTooManyRequests = 'ERROR_TOO_MANY_REQUESTS';
-  static const _errorOperationNotAllowed = 'ERROR_OPERATION_NOT_ALLOWED';
+  static const _errorlInvalidEmail = 'invalid-email';
+  static const _errorWrongPassword = 'wrong-password';
+  static const _errorUserNotFound = 'user-not-found';
+  static const _errorUserDisabled = 'user-disabled';
+  static const _errorTooManyRequests = 'too-many-requests';
+  static const _errorOperationNotAllowed = 'operation-not-allowed';
 
   static AppFirebaseEmailAuthException getErrorEmailAuthMessage(String code) {
+    print(code);
     switch (code) {
       case _errorlInvalidEmail:
         {
@@ -29,7 +30,7 @@ class AppFirebaseEmailAuthException extends BaseFirebaseException {
         }
       case _errorWrongPassword:
         {
-          return AppFirebaseEmailAuthException(errorMessage: 'Invalid password');
+          return AppFirebaseEmailAuthException(errorMessage: 'Wrong password');
         }
       case _errorUserNotFound:
         {

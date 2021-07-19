@@ -18,7 +18,7 @@ class UserRemoteDataSource extends BaseRemoteDataSource {
     try {
       var user = await _auth.signInWithEmailAndPassword(email: userCredentials.email!, password: userCredentials.password!);
       return Success(_auth.currentUser != null);
-    } on PlatformException catch (error) {
+    } on FirebaseException catch (error) {
       print('Error while trying to login with email: ${error.message}');
       return Error(AppFirebaseEmailAuthException.getErrorEmailAuthMessage(error.code));
     }
@@ -28,7 +28,7 @@ class UserRemoteDataSource extends BaseRemoteDataSource {
     try {
       var user = await _auth.createUserWithEmailAndPassword(email: userInfo.email!, password: userInfo.password!);
       return Success(_auth.currentUser != null);
-    } on PlatformException catch (error) {
+    } on FirebaseException catch (error) {
       print('Error while trying to login with email: ${error.message}');
       return Error(AppFirebaseEmailAuthException.getErrorEmailAuthMessage(error.code));
     }
@@ -38,18 +38,17 @@ class UserRemoteDataSource extends BaseRemoteDataSource {
     try {
       await _auth.signOut();
       return Success(true);
-    } on PlatformException catch (error) {
+    } on FirebaseException catch (error) {
       print('Error while trying to login with email: ${error.message}');
       return Error(AppFirebaseEmailAuthException.getErrorEmailAuthMessage(error.code));
     }
   }
 
-  Future<Result<BaseHttpExceptions, bool>> saveUserInfo(UserInfoEntity userInfoModel) async {
+  Future<Result<BaseHttpExceptions, bool>> saveUserInfo(UserInfoEntity userInfoEntity) async {
     try {
-      userInfoModel.userId = _auth.currentUser?.uid;
-      print(userInfoModel.toModel().toJson());
-
-      var result = await client.post(AppHttp.userInfo, data: json.encode(userInfoModel.toModel().toJson()));
+      userInfoEntity.userId = _auth.currentUser?.uid;
+      print(userInfoEntity.toModel().toJson());
+      var result = await client.post(AppHttp.userInfo, data: json.encode(userInfoEntity.toModel().toJson()));
       if (result.statusCode == 201) {
         return Success(true);
       }

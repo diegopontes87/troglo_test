@@ -25,7 +25,7 @@ Future startAppFunctions() async {
   var _auth = FirebaseAuth.instance;
   var user = _auth.currentUser;
   if (user != null) {
-    // AppRoutes.initialRoute = AppRoutes;
+    AppRoutes.initialRoute = AppRoutes.homePage;
   } else {
     AppRoutes.initialRoute = AppRoutes.loginPage;
   }
@@ -37,7 +37,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       theme: AppTheme.lightTheme,
       getPages: AppRoutes.pageList,
-      initialRoute: AppRoutes.loginPage,
+      initialRoute: AppRoutes.initialRoute,
       initialBinding: BaseBindings(),
     );
   }

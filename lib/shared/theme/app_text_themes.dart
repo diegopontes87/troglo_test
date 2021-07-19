@@ -17,7 +17,7 @@ class AppTextTheme {
         color: AppColors.black,
       ),
       headline3: GoogleFonts.inter(
-        fontSize: 23.propHeight(),
+        fontSize: 18.propHeight(),
         fontWeight: FontWeight.w600,
         color: AppColors.black,
       ),
@@ -44,10 +44,10 @@ class AppTextTheme {
         height: 1.7,
       ),
       subtitle1: GoogleFonts.inter(
-        fontSize: 13.propHeight(),
+        fontSize: 11.propHeight(),
         fontWeight: FontWeight.w400,
         color: AppColors.black,
-        height: 1.7,
+        height: 1,
       ),
     );
   }

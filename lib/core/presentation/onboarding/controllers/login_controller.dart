@@ -4,6 +4,7 @@ import 'package:troglo_test/core/data/user/entities/user_credentials_entity.dart
 import 'package:troglo_test/core/domain/user/usecases/login_with_mail_usecase.dart';
 import 'package:troglo_test/shared/infrastructure/base/base_controller.dart';
 import 'package:troglo_test/shared/infrastructure/screen_state/screen_state.dart';
+import 'package:troglo_test/shared/res/app_routes.dart';
 
 class LoginController extends BaseController {
   LoginWithEmailUsecase _loginWithEmailUsecase;
@@ -13,19 +14,19 @@ class LoginController extends BaseController {
 
   LoginController(this._loginWithEmailUsecase);
 
-  String? emailFieldValidator(String? email) {
+  String? emailFieldValidator(String? email, Function callbackError) {
     if (email == null || email.isEmpty) {
-      return "Email can't be null";
+      callbackError('Missed Field:', "Email field can't be empty.");
     } else if (!email.isEmail) {
-      return "Email is not valid!";
+      callbackError('Error', 'Please insert a valid email address');
     } else {
       return '';
     }
   }
 
-  String? passwordFieldValidator(String? password) {
+  String? passwordFieldValidator(String? password, Function callbackError) {
     if (password == null || password.isEmpty) {
-      return "Password can't be null";
+      callbackError('Missed Field:', "Password field can't be empty.");
     } else {
       return '';
     }
@@ -45,7 +46,7 @@ class LoginController extends BaseController {
     result.when((exception) {
       firebaseExceptionHandler(exception);
     }, (success) {
-      print('success');
+      goToPage(AppRoutes.homePage);
     });
   }
 }

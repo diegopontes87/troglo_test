@@ -6,6 +6,7 @@ import 'package:troglo_test/core/domain/user/usecases/sign_up_with_email_usecase
 import 'package:troglo_test/shared/infrastructure/base/base_controller.dart';
 import 'package:troglo_test/shared/infrastructure/screen_state/screen_state.dart';
 import 'package:get/utils.dart';
+import 'package:troglo_test/shared/res/app_routes.dart';
 
 class SignUpCredentialsController extends BaseController {
   UserInfoEntity? userInfoEntity;
@@ -65,6 +66,7 @@ class SignUpCredentialsController extends BaseController {
     if (!formKey.currentState!.validate()) {
       changeScreenState(ScreenState.loadingState);
       await createUserWithEmail(userInfoEntity!);
+      await saveUserInfo(userInfoEntity!);
       changeScreenState(ScreenState.doneState);
     }
   }
@@ -76,7 +78,7 @@ class SignUpCredentialsController extends BaseController {
       exceptionHandler(exception);
     }, (isSaved) {
       if (isSaved) {
-        goToPage('');
+        goToPage(AppRoutes.homePage);
       }
     });
   }
@@ -89,11 +91,9 @@ class SignUpCredentialsController extends BaseController {
       ),
     );
     result.when((exception) {
-      print('teste');
-
       firebaseExceptionHandler(exception);
     }, (success) async {
-      await saveUserInfo(userInfoEntity);
+      print('Created');
     });
   }
 }

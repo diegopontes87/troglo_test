@@ -21,6 +21,8 @@ class AppRes {
   static TextStyle bodyTextOnPrimary1 = _appTextTheme.bodyText1!.copyWith(color: appColorTheme.onPrimary);
   static TextStyle bodyTextOnPrimary2 = _appTextTheme.bodyText2!.copyWith(color: appColorTheme.onPrimary);
 
+  static TextStyle subtitlePrimary1 = _appTextTheme.subtitle1!.copyWith(color: appColorTheme.onPrimary);
+
 //BLACK TEXTS THEMES WITH OPACITY
   static TextStyle headlineOpacityOnbackground1 = _appTextTheme.headline1!.copyWith(color: appColorTheme.onBackground.withOpacity(0.54));
   static TextStyle headlineOpacityOnbackground2 = _appTextTheme.headline2!.copyWith(color: appColorTheme.onBackground.withOpacity(0.54));

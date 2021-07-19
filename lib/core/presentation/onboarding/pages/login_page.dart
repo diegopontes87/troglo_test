@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:troglo_test/core/presentation/onboarding/controllers/login_controller.dart';
 import 'package:troglo_test/shared/infrastructure/screen_state/screen_state.dart';
+import 'package:troglo_test/shared/infrastructure/widgets/app_snack_bar.dart';
 import 'package:troglo_test/shared/infrastructure/widgets/buttons/small_buttons/app_small_button_widget.dart';
 import 'package:troglo_test/shared/infrastructure/widgets/textfields/app_text_field_widget.dart';
 import 'package:troglo_test/shared/infrastructure/extensions/app_sizes_extensions.dart';
@@ -58,9 +59,7 @@ class LoginPage extends GetWidget<LoginController> {
                                   screenState: controller.screenState,
                                   prefixIcon: Icon(Icons.mail),
                                   textInputAction: TextInputAction.next,
-                                  validator: (value) => controller.emailFieldValidator(
-                                    value,
-                                  ),
+                                  validator: (value) => controller.emailFieldValidator(value, getErrorSnackBar),
                                   textFieldController: controller.emailTextFieldController,
                                 ),
                                 AppTextFormField(
@@ -73,9 +72,7 @@ class LoginPage extends GetWidget<LoginController> {
                                   prefixIcon: Icon(Icons.lock),
                                   textInputAction: TextInputAction.done,
                                   isPassword: true,
-                                  validator: (value) => controller.passwordFieldValidator(
-                                    value,
-                                  ),
+                                  validator: (value) => controller.passwordFieldValidator(value, getErrorSnackBar),
                                   textFieldController: controller.passwordTextFieldController,
                                 ),
                                 AppSmallButtonWidget(
@@ -111,6 +108,13 @@ class LoginPage extends GetWidget<LoginController> {
           ),
         ),
       ),
+    );
+  }
+
+  getErrorSnackBar(String errorTitle, String errorMessage) {
+    AppSnackBar.getErrorSnackBar(
+      title: errorTitle,
+      message: errorMessage,
     );
   }
 }

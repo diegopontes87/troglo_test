@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:troglo_test/core/presentation/home/bindings/home_bindings.dart';
+import 'package:troglo_test/core/presentation/home/pages/home_page.dart';
 import 'package:troglo_test/core/presentation/onboarding/bindings/onboarding_bindings.dart';
 import 'package:troglo_test/core/presentation/onboarding/pages/login_page.dart';
 import 'package:troglo_test/core/presentation/onboarding/pages/sign_up_credentials_page.dart';
@@ -9,6 +11,7 @@ class AppRoutes {
   static const loginPage = '/login';
   static const signUpInfoPage = '/signupinfo';
   static const signUpCredentialsPage = '/signupcredentials';
+  static const homePage = '/homepage';
 
   static List<GetPage> pageList = [
     GetPage(
@@ -27,6 +30,12 @@ class AppRoutes {
       name: signUpCredentialsPage,
       page: () => SignUpCredentialsPage(),
       binding: OnboardingBindings(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: homePage,
+      page: () => HomePage(),
+      binding: HomeBindings(),
       transition: Transition.fadeIn,
     ),
   ];
